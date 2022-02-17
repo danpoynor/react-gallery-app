@@ -1,0 +1,57 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true,
+        "jest": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "airbnb",
+        "plugin:testing-library/react",
+        "plugin:react/jsx-runtime"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "testing-library",
+        "react-hooks"
+    ],
+    "rules": {
+      "comma-dangle": ["error", "never"],
+      "max-len": "off",
+      "react/react-in-jsx-scope": "off",
+      "react/function-component-definition": ["error", {"namedComponents": "arrow-function", "unnamedComponents": "arrow-function"}],
+      "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+      "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+      "testing-library/await-async-query": "error",
+      "testing-library/await-async-utils": "error",
+      "testing-library/no-await-sync-query": "error",
+      "testing-library/no-container": "error",
+      "testing-library/no-debugging-utils": "error",
+      "testing-library/no-dom-import": "error",
+      "testing-library/no-node-access": "error",
+      "testing-library/no-promise-in-fire-event": "error",
+      "testing-library/no-render-in-setup": "error",
+      "testing-library/no-unnecessary-act": "error",
+      "testing-library/no-wait-for-empty-callback": "error",
+      "testing-library/no-wait-for-multiple-assertions": "error",
+      "testing-library/no-wait-for-side-effects": "error",
+      "testing-library/no-wait-for-snapshot": "error",
+      "testing-library/prefer-explicit-assert": "error",
+      "testing-library/prefer-find-by": "error",
+      "testing-library/prefer-presence-queries": "off",
+      "testing-library/prefer-query-by-disappearance": "error",
+      "testing-library/prefer-screen-queries": "error",
+      "testing-library/prefer-user-event": "error",
+      "testing-library/prefer-wait-for": "error",
+      "testing-library/render-result-naming-convention": "error"
+    }
+}

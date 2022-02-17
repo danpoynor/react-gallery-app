@@ -1,0 +1,48 @@
+body {
+  background-color: #262626;
+  color: #fff;
+  font-family: Open Sans, sans-serif;
+  inset: 0;
+  min-width: 320px;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.4em;
+  margin: 1.5rem 0;
+}
+
+/* For api error messages */
+h2 + pre {
+  background: #f00;
+  color: #fff;
+  display: initial;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+mark {
+  border-radius: .33rem;
+  padding-left: .33rem;
+  padding-right: .33rem;
+}
+
+.error-message {
+  color: #ff0;
+}
+
+@media only screen and (min-width: 768px) {
+  body {
+    padding-top: 2em;
+  }
+}

@@ -1,0 +1,14 @@
+footer {
+  color: #999;
+  font-size: .75rem;
+  padding: 2rem 0;
+}
+
+footer a {
+  color: #fe945a;
+  text-decoration: none;
+}
+
+footer p + p {
+  margin-top: -.5rem;
+}

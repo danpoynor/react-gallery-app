@@ -1,0 +1,49 @@
+.main-nav li {
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.main-nav {
+  margin: 0 auto;
+  max-width: 460px;
+}
+
+.main-nav a {
+  background: hsl(279deg 82% 59%) linear-gradient(130deg, hsl(267deg 82% 59% / 0%) 0%, hsl(267deg 82% 44% / 100%) 80%);
+  border-radius: 100px;
+  box-shadow: .25rem .25rem .5rem 0 hsl(0deg 0% 0% / 70%);
+  color: #fff;
+  display: block;
+  font-size: 18px;
+  line-height: 18px;
+  padding: .75rem 4rem;
+  position: relative;
+  transition: .3s all cubic-bezier(.4, 0, .2, 1);
+}
+
+.main-nav a:hover {
+  background: hsl(267deg 82% 40%) linear-gradient(130deg, hsl(267deg 82% 59% / 0%) 0%, hsl(279deg 72% 54% / 100%) 80%);
+}
+
+.main-nav .active {
+  background-color: hsl(279deg 82% 59%);
+  box-shadow: .15rem .15rem .5rem 0 hsl(0deg 0% 0% / 30%), inset 0 0 1px 2px hsl(0deg 0% 100% / 100%);
+  pointer-events: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .main-nav {
+    max-width: none;
+  }
+
+  .main-nav ul {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-nav li {
+    margin: .5rem;
+    width: auto;
+  }
+}

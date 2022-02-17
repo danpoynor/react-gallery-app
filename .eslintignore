@@ -1,0 +1,4 @@
+# ignore specific files and directories
+# good place to turn eslint on/off
+
+# *
