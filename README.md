@@ -4,11 +4,20 @@ A photo gallery built with React to access the [Flickr.com API](https://www.flic
 
 ---
 
-## Live Preview
+## Preview
 
-[https://angry-allen-f2aca0.netlify.app/](https://angry-allen-f2aca0.netlify.app/)
+Live: [https://angry-allen-f2aca0.netlify.app/](https://angry-allen-f2aca0.netlify.app/)
+
+<details>
+
+  <summary>Screenshot</summary>
+
+  <img width="1043" alt="Screen Shot 2022-03-17 at 4 05 40 PM" src="https://user-images.githubusercontent.com/764270/158895419-bc62fd73-e104-4daf-a2ae-dd6b6e6d7d78.png">
+
+</details>
 
 ---
+
 
 ## To install and run the project locally
 
