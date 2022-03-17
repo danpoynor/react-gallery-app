@@ -10,7 +10,7 @@ A photo gallery built with React to access the [Flickr.com API](https://www.flic
 
 ---
 
-## To install and run project locally
+## To install and run the project locally
 
 ```cmd
 > git clone https://github.com/danpoynor/react-gallery-app.git
@@ -23,11 +23,10 @@ A photo gallery built with React to access the [Flickr.com API](https://www.flic
 
 ## Features
 
-- App displays a loading indicator each time the app fetches new data.
 - Three default clickable topics are provided: `Fat Cats`, `Mean Dogs`, and `Big Birds`.
 - Clicking on a topic will display a loading indicator as data is fetched.
+- The search feature allows searching for photos by `tag` query param.
 - Using the browser's forward and back buttons displays correct data.
-- Search feature allows searching for photos by tag.
 - "No Results Found" message appears if no matches found for a search.
   - [http://localhost:3000/search/unknowsearchtext](http://localhost:3000/search/unknowsearchtext)
 - "404: Page Not Found" message appears when a URL path does not match an existing route.
@@ -37,7 +36,7 @@ A photo gallery built with React to access the [Flickr.com API](https://www.flic
 
 ## Technical Notes
 
-The Flickr `apiKey` is stored in an un-committed `.env` file which not part of this repo. The key is included in the `config.js` file as:
+The Flickr `apiKey` is stored in an un-committed `.env` file locally which not part of this repo. The environment variable is included in the `config.js` file as:
 
 ```js
 export const apiKey = process.env.REACT_APP_FLICKR_API_KEY;
@@ -52,9 +51,9 @@ REACT_APP_FLICKR_API_KEY=a123456789012345678901234567980z
 - No class components used. All are functional components using Hooks (released as part of [React 16.8.0](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html), Feb 2019)
 - [Axios](https://axios-http.com/) used to fetch data from the Flickr API.
 - [React Router v6](https://reactrouter.com/) used instead of v4 or v5. [v6 release announcement](https://remix.run/blog/react-router-v6), [Docs](https://reactrouter.com/docs/en/v6)
-- ESLint configured to enforce consistent coding standards.
+- [ESLint](https://eslint.org) configured to enforce consistent coding standards.
 - [PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html) used to validate properties passed to components.
-- React component [Unit and Integration tests](https://reactjs.org/docs/testing.html) added using [Jest](https://jestjs.io/docs/getting-started) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
+- [Unit and Integration tests](https://reactjs.org/docs/testing.html) added using [Jest](https://jestjs.io/docs/getting-started) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
 
 <details>
 <summary>Why no class components?</summary>
@@ -66,6 +65,7 @@ From the [React docs](https://reactjs.org/docs/hooks-intro.html#classes-confuse-
 To solve these problems, Hooks let you use more of React’s features without classes. Conceptually, React components have always been closer to functions. Hooks embrace functions, but without sacrificing the practical spirit of React. Hooks provide access to imperative escape hatches and don’t require you to learn complex functional or reactive programming techniques.</blockquote>
 
 See also: [React Hooks FAQ](https://reactjs.org/docs/hooks-faq.html)
+
 Custom hooks examples: [usehooks.com](https://usehooks.com/)
 
 </details>
@@ -82,21 +82,20 @@ Custom hooks examples: [usehooks.com](https://usehooks.com/)
 
 ## Additional Edits Made
 
-- Included responsive layout for mobile devices.
+- Includes responsive layout for mobile devices.
 - If user tries to access `/tags/not-a-predefined-tag` they are presented with "404: Page Not Found" message.
 - If user tries to access `/tag/` directly, the message "Select a button name above" appears.
 - If user tries to access `/search/` directly, the message "Enter text to search for above" appears.
-- Color swatch navigation added to search photos by color.
+- Color swatch navigation added to search for photos by color.
 - If user tries to access `/color` directly, they are redirected to `/` (home screen).
 - Updated CSS styles while maintaining the general arrangement, spacing, and positioning in mockups.
 - Browsers `<title>` tag updates to reflect the current tag or search term, such as "Flickr.com results for mean dogs".
 - Footer includes a copyright disclaimer, just in case.
 - If user hard reloads `/tag/:tagTerm`, `/search/:searchTerm`, or  `/color/:colorTerm` page, or if they access the pages directly (bypassing homepage), photos are still shown and no errors appear.
 - API results are saved to `sessionStorage` to persist across potential page refreshes without making additional API calls.
-- Static settings params defined in the `config.js` file for convenient editing.
+- Static settings params defined in the `src/settings.js` file for convenient editing.
 - `_redirects` file added to `public/` directory for [Netlify](https://www.netlify.com/) hosting to handle React routing.
 - Search field maintains search phrase on page reload and when using the browser's forward and back buttons.
-- Added unit/ui tests and some integration tests.
 
 ---
 
@@ -132,44 +131,6 @@ You should never rely on other packages "transitive dependencies" just "being th
 - Source: [https://github.com/facebook/create-react-app/issues/3985#issuecomment-363410237](https://github.com/facebook/create-react-app/issues/3985#issuecomment-363410237)
 - React PropTypes Documentation: [https://reactjs.org/docs/typechecking-with-proptypes.html](https://reactjs.org/docs/typechecking-with-proptypes.html)
 - Repo: [https://github.com/facebook/prop-types](https://github.com/facebook/prop-types)
-
-</details>
-
-<details>
-
-<summary>It's very common for your data lookups to use a <code>number</code> type, but URL params are always <code>string</code> type.</summary>
-
-If needed, use something like `parseInt(params.invoiceId, 10)` to convert a URL param to a number.
-
-- Source: [https://reactrouter.com/docs/en/v6/getting-started/tutorial](https://reactrouter.com/docs/en/v6/getting-started/tutorial)
-
-</details>
-
-<details>
-
-<summary>React Testing Library Notes</summary>
-
-- It doesn't replace Jest. It works with Jest (or Mocha).
-- Is a replacement for Enzyme (created by AirbnB)
-- RTL is all about testing what is output on the DOM.
-- You can have an 'await' to wait for an elements to appear or data to load.
-- Instead of testing `state`, you should test what's in the DOM (which is what user would see).
-- There is a [Babel plugin](https://www.npmjs.com/package/babel-plugin-react-remove-properties) that can be used to remove `data-test` or `data-testid` attributes from your code if needed.
-- If you don't want to use `data-testid` you can use regular DOM methods and properties to query elements, such as
-
-```js
-const firstLiInDiv = container.querySelector('div li')
-const allLisInDiv = container.querySelectorAll('div li')
-const rootElement = container.firstChild
-```
-
-- Avoid using the DOM: React Testing Library provides methods for semantically querying DOM elements so that we can test our page in the most accessible way. Instead of searching by class name, we find elements by [role](https://testing-library.com/docs/queries/byrole), [label](https://testing-library.com/docs/queries/bylabeltext), [placeholder text](https://testing-library.com/docs/queries/byplaceholdertext), [text content](https://testing-library.com/docs/queries/bytext), [display value](https://testing-library.com/docs/queries/bydisplayvalue), [alt text](https://testing-library.com/docs/queries/byalttext), [title](https://testing-library.com/docs/queries/bytitle), or by using a [data-testid](https://testing-library.com/docs/queries/bytestid). Folks coming from Enzyme or other UI testing libraries that use heavy DOM traversal to select DOM nodes may bring that into RTL testing.
-- If there are multiple items with the same role in the rendered content, you can query a specific element by its 'accessible name' such as its text content, label text, or value of the aria-label. `getByAltText('fancy image')` and `getByRole('img', { name: 'fancy image' })` are equivalent.
-- [`@testing-library/jest-dom`](https://github.com/testing-library/jest-dom) provides a set of custom jest matchers that you can use to extend jest and assert various things about the state of a DOM. It helps you avoid repetitive patterns that arise in doing so, such as checking for an element's attributes, its text content, its css classes
-- [`@testing-library/dom`](https://www.npmjs.com/package/@testing-library/dom) facilitate querying the DOM in the same way the user would. Finding form elements by their label text (just like a user would), finding links and buttons from their text (like a user would), and more. It also exposes a recommended way to find elements by a data-testid as an "escape hatch" for elements where the text content and label do not make sense or is not practical. This library encourages your applications to be more accessible and allows you to get your tests closer to using your components the way a user will, which allows your tests to give you more confidence that your application will work when a real user uses it.
-It's important that `@testing-library/dom` is resolved to the same installation required by the framework wrapper of your choice. Usually this means that if you use one of the [framework wrappers](https://testing-library.com/docs/dom-testing-library/install#wrappers), you should not add @testing-library/dom to your project dependencies.
-- [`@testing-library/user-event`](https://testing-library.com/docs/user-event/intro/) unlike [`fireEvent`](https://testing-library.com/docs/dom-testing-library/api-events#fireevent), `user-event` dispatches events like they would happen if a user interacted with the document. That might lead to the same events you previously dispatched per `fireEvent` directly, but it also might catch bugs that make it impossible for a user to trigger said events.
-This is [why you should use user-event](https://ph-fritsche.github.io/blog/post/why-userevent) to test interaction with your components.
 
 </details>
 
@@ -211,14 +172,46 @@ function Example() {
 
 <details>
 
-<summary>Testing notes</summary>
+<summary>It's very common for your data lookups to use a <code>number</code> type, but URL params are always <code>string</code> type.</summary>
+
+If needed, use something like `parseInt(params.invoiceId, 10)` to convert a URL param to a number.
+
+- Source: [https://reactrouter.com/docs/en/v6/getting-started/tutorial](https://reactrouter.com/docs/en/v6/getting-started/tutorial)
+
+</details>
+
+<details>
+
+<summary>React Testing Library Notes</summary>
+
+- It doesn't replace Jest. It works with Jest (or Mocha).
+- Is a replacement for Enzyme (created by AirbnB)
+- RTL is all about testing what is output on the DOM.
+- You can have an 'await' to wait for an elements to appear or data to load.
+- Instead of testing `state`, you should test what's in the DOM (which is what user would see).
+- There is a [Babel plugin](https://www.npmjs.com/package/babel-plugin-react-remove-properties) that can be used to remove `data-test` or `data-testid` attributes from your code if needed.
+- If you don't want to use `data-testid` you can use regular DOM methods and properties to query elements, such as
+
+```js
+const firstLiInDiv = container.querySelector('div li')
+const allLisInDiv = container.querySelectorAll('div li')
+const rootElement = container.firstChild
+```
+
+- Avoid using the DOM: React Testing Library provides methods for semantically querying DOM elements so that we can test our page in the most accessible way. Instead of searching by class name, we find elements by [role](https://testing-library.com/docs/queries/byrole), [label](https://testing-library.com/docs/queries/bylabeltext), [placeholder text](https://testing-library.com/docs/queries/byplaceholdertext), [text content](https://testing-library.com/docs/queries/bytext), [display value](https://testing-library.com/docs/queries/bydisplayvalue), [alt text](https://testing-library.com/docs/queries/byalttext), [title](https://testing-library.com/docs/queries/bytitle), or by using a [data-testid](https://testing-library.com/docs/queries/bytestid). Folks coming from Enzyme or other UI testing libraries that use heavy DOM traversal to select DOM nodes may bring that into RTL testing.
+- If there are multiple items with the same role in the rendered content, you can query a specific element by its 'accessible name' such as its text content, label text, or value of the aria-label. `getByAltText('fancy image')` and `getByRole('img', { name: 'fancy image' })` are equivalent.
+- [`@testing-library/jest-dom`](https://github.com/testing-library/jest-dom) provides a set of custom jest matchers that you can use to extend jest and assert various things about the state of a DOM. It helps you avoid repetitive patterns that arise in doing so, such as checking for an element's attributes, its text content, its css classes
+- [`@testing-library/dom`](https://www.npmjs.com/package/@testing-library/dom) facilitate querying the DOM in the same way the user would. Finding form elements by their label text (just like a user would), finding links and buttons from their text (like a user would), and more. It also exposes a recommended way to find elements by a data-testid as an "escape hatch" for elements where the text content and label do not make sense or is not practical. This library encourages your applications to be more accessible and allows you to get your tests closer to using your components the way a user will, which allows your tests to give you more confidence that your application will work when a real user uses it.
+It's important that `@testing-library/dom` is resolved to the same installation required by the framework wrapper of your choice. Usually this means that if you use one of the [framework wrappers](https://testing-library.com/docs/dom-testing-library/install#wrappers), you should not add @testing-library/dom to your project dependencies.
+- [`@testing-library/user-event`](https://testing-library.com/docs/user-event/intro/) unlike [`fireEvent`](https://testing-library.com/docs/dom-testing-library/api-events#fireevent), `user-event` dispatches events like they would happen if a user interacted with the document. That might lead to the same events you previously dispatched per `fireEvent` directly, but it also might catch bugs that make it impossible for a user to trigger said events.
+This is [why you should use user-event](https://ph-fritsche.github.io/blog/post/why-userevent) to test interaction with your components.
 
 Resources:
 
 - Testing-Library
   -[Testing-Library](https://testing-library.com/)
-  - [Testing-Library Docs](https://testing-library.com/docs/react-testing-library/intro)
-  - [Testing-Library Docs: Querying](https://testing-library.com/docs/react-testing-library/api-queries)
+  - [React Testing-Library Docs](https://testing-library.com/docs/react-testing-library/intro)
+  - [React Testing-Library Docs: Querying](https://testing-library.com/docs/react-testing-library/api-queries)
   - [Testing-Library Examples](https://testing-library.com/docs/example-codesandbox)
   - [react-testing-examples.com](https://react-testing-examples.com/jest-rtl/)
   - [Testing-Library Query Playground](https://testing-playground.com/)
@@ -233,16 +226,18 @@ Resources:
 
 - Improve initial view to look more like a home page or landing page.
 - Perhaps show random or new photos on initial page load.
-- Show list of search terms so users can see what they can search for and click on them to see the results again.
+- Show list of terms user has searched for so they can see what they previously searched for and possible click on to see the results again.
 - Allow 'text' searches instead of just 'tag' searches.
 - Add 'mostly-' so some color tags to get potentially better results.
-- Check into why using API doesn't show same results as searching on the actual site flickr.com.
-- Expire sessionStorage in case browser isn't closed for hours so new photo results are shown.
-- Allow combining search criteria, such as being able to select both 'fat cats' and 'orange'.
+- Check into why querying the API doesn't show same results as searching on the actual site [flickr.com](https://flickr.com).
+- Expire `sessionStorage` in case browser isn't closed for hours so new photo results are shown.
+- Allow combining search criteria, such as selecting both 'fat cats' and 'orange'.
 - Add a search hint to the `<SearchForm>` noting case-insensitivity, what's being searched, and use of minus sign (-) to exclude words perhaps.
 - Add [pace.js](https://codebyzach.github.io/pace/) to show progress bar or loading spinner while waiting for photos to download. Add to [public folder](https://create-react-app.dev/docs/using-the-public-folder#when-to-use-the-public-folder)
 - Create end-to-end tests: Use a framework like Cypress, Playwright (or Selenium?) or a library like Puppeteer, so I can navigate between multiple routes and assert on side effects not just in the browser, but potentially on the backend as well.
 - Show loading animation while images download.
+- Do a11y testing.
+- Do performance testing.
 
 ---
 
